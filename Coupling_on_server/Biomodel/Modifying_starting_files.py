@@ -22,7 +22,7 @@ n_iteration = int(sys.argv[1])
 new_folder_name = os.path.join(new_folder_path, f"RESULTS_iteration{n_iteration}")
 os.makedirs(new_folder_name, exist_ok=True)
 
-# Utilitaires
+# Ancient atmospheric composition
 def parse_gases_def(filepath):
     with open(filepath, 'r') as f:
         lines = [line.strip() for line in f if line.strip() and not line.startswith('#')]
@@ -38,14 +38,14 @@ previous_fH = gases.get("H2", 0)
 previous_fC = gases.get("CO2", 0)
 previous_fN = gases.get("N2", 0)
 
-# Coordonnees depuis diagfi.nc
+
 ds = xr.open_dataset(os.path.join(diagfi_path, "diagfi_global.nc"), decode_times=False)
 latitudes = ds.latitude.values
 longitudes = ds.longitude.values
 ds.load()
 ds.close()
 
-# Chargement des fichiers pickle
+# Loading .pkl files
 with open(os.path.join(biomodel_path, "resultats_biomodel.pkl"), "rb") as f:
     results = pickle.load(f)
 
@@ -53,7 +53,7 @@ with open(os.path.join(initialisation_path, "Initialisation_table.pkl"), "rb") a
     Ini_file = pickle.load(f)
     natm_map = Ini_file['natm_grid']
 
-# Calcul des nouveaux facteurs
+# New atmospheric composition
 previous_ntotal = ntotal = ntotH = ntotC = ntotG = ntotN = 0
 
 for i in range(len(latitudes)):
@@ -82,7 +82,7 @@ fN = ntotN / ntotal
 
 pressure_factor = ntotal / previous_ntotal
 
-# Mise à jour de gases.def
+# Update gases.def
 def update_gas_concentrations(file_path, new_concentrations):
     with open(file_path, "r") as f:
         lines = f.readlines()
@@ -98,7 +98,7 @@ new_ratios = {"CO2": fC, "H2": fH, "CH4": fG, "N2_": fN}
 shutil.copy2(os.path.join(gases_path, "gases.def"), os.path.join(new_folder_name, f'gases{n_iteration}.def'))
 update_gas_concentrations(os.path.join(gases_path, "gases.def"), new_ratios)
 
-# Mise à jour de start.nc
+# Update start.nc
 input_file = os.path.join(start_path, "start.nc")
 ds2 = xr.open_dataset(input_file)
 ds2.load()
@@ -106,18 +106,17 @@ ds2.close()
 
 if "ps" in ds2 and ds2["ps"].size > 0:
     ds2["ps"] *= pressure_factor
-    print("Variable 'ps' modifiée.")
+    print("Variable 'ps' modified.")
 else:
-    print("Variable 'ps' absente ou vide.")
+    print("Variable 'ps' lacking or empty.")
 
 if "presnivs" in ds2 and ds2["presnivs"].size > 0:
     ds2["presnivs"] *= pressure_factor
-    print("Variable 'presnivs' modifiée.")
+    print("Variable 'presnivs' modified.")
 else:
-    print("Variable 'presnivs' absente ou vide.")
+    print("Variable 'presnivs' lacking or empty.")
 
 ds2.to_netcdf(input_file,mode='w')
-print(f"Fichier modifié sauvegardé sous '{input_file}'.")
 ds2.close()
 
 # changing the names
@@ -127,15 +126,15 @@ os.rename(diagfi_path+'diagfi_global.nc', new_folder_name+f'/diagfi_global{n_ite
 os.rename(biomodel_path+'resultats_biomodel.pkl', new_folder_name+f'/resultats_biomodel{n_iteration}.pkl')
 os.rename(initialisation_path+'Initialisation_table.pkl', new_folder_name+f'/Initialisation_table{n_iteration}.pkl')
 
-# Suppression sécurisée des fichiers results_*.pkl
+# Deleting results_*.pkl
 fichiers = glob.glob(os.path.join(results_xx_path, "results_*.pkl"))
 for fichier in fichiers:
     try:
         os.remove(fichier)
-        print(f"Supprimé : {fichier}")
+        print(f"Deleted : {fichier}")
     except PermissionError:
-        print(f"Permission refusée pour : {fichier}")
+        print(f"Unauthorized for : {fichier}")
     except Exception as e:
-        print(f"Erreur lors de la suppression de {fichier} : {e}")
+        print(f"Error when deleting {fichier} : {e}")
 
 
