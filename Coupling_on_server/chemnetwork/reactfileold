@@ -1,0 +1,61 @@
+! Photolysis
+o2              hv                                o               o                                 0    jo2_o               4    150  200  250  300  O2_150.abs O2_200.abs O2_250.abs O2_300.abs o2_o.yld
+o2              hv                                o               o1d                               0    jo2_o1d             4    150  200  250  300  O2_150.abs O2_200.abs O2_250.abs O2_300.abs o2_o1d.yld
+o3              hv                                o2              o1d                               0    jo3_o1d             2    218  298  O3_218.abs O3_298.abs o3_o1d.yld
+o3              hv                                o2              o                                 0    jo3_o               2    218  298  O3_218.abs O3_298.abs o3_o.yld
+h2o2            hv                                oh              oh                                0    jh2o2               5    200  250  300  350  400  H2O2_200.abs H2O2_250.abs H2O2_300.abs H2O2_350.abs H2O2_400.abs h2o2.yld
+h2o_vap         hv                                h               oh                                0    jh2o                1    250  H2O.abs h2o.yld
+ch2o            hv                                cho             h                                 0    jch2o_cho           3    223  298  323  ch2o_jpl2011_223.abs ch2o_jpl2011_298.abs ch2o_jpl2011_323.abs ch2o_cho.yld
+ch2o            hv                                co              h2                                0    jch2o_co            3    223  298  323  ch2o_jpl2011_223.abs ch2o_jpl2011_298.abs ch2o_jpl2011_323.abs ch2o_co.yld
+co2             hv                                co              o                                 0    jco2_o              3    195  295  370  CO2_195.abs CO2_295.abs CO2_370.abs co2_o.yld
+co2             hv                                co              o1d                               0    jco2_o1d            3    195  295  370  CO2_195.abs CO2_295.abs CO2_370.abs co2_o1d.yld
+ho2             hv                                oh              o                                 0    jho2                1    1    HO2.abs ho2.yld
+cho             hv                                h               co                                0    jcho                1    1    CHO.abs cho.yld
+!no              hv                                n               o                                 0    jno                 1    1    NO.abs no.yld !! hard coded
+!
+! Reactions
+o1d             o2                                o               o2                                1    3.2e-11     -70.0       0.0         1           0.0
+o1d             co                                o               co                                1    6.0e-11     0.0         0.0         1           0.0
+o1d             co2                               o               co2                               1    7.4e-11     -110        0.0         1           0.0
+o               o3                                o2              o2                                1    8.0e-12     2060.0      0.0         1           0.0
+o1d             h2o_vap                           oh              oh                                1    2.2e-10     0.0         0.0         1           0.0
+o1d             h2                                oh              h                                 1    1.1e-10     0.0         0.0         1           0.0
+o               h2                                oh              h                                 1    1.34e-15    1460.0      6.52        298         0.0
+o1d             o3                                o2              o2                                1    1.2e-10     0.0         0.0         1           0.0
+o1d             o3                                o2              o                o                1    1.2e-10     0.0         0.0         1           0.0
+o               ho2                               oh              o2                                1    3.0e-11     -200.0      0.0         1           0.0
+o               oh                                o2              h                                 1    2.2e-11     -120.0      0.0         1           0.0
+h               o3                                oh              o2                                1    1.4e-10     470.0       0.0         1           0.0
+h               ho2                               oh              oh                                1    7.2e-11     0.0         0.0         1           0.0
+h               ho2                               h2              o2                                1    6.9e-12     0.0         0.0         1           0.0
+h               ho2                               h2o_vap         o                                 1    1.6e-12     0.0         0.0         1           0.0
+oh              ho2                               h2o_vap         o2                                1    4.8e-11     -250.0      0.0         1           0.0
+oh              h2o2                              h2o_vap         ho2                               1    2.9e-12     160.0       0.0         1           0.0
+oh              h2                                h2o_vap         h                                 1    5.5e-12     2000.0      0.0         1           0.0
+o               h2o2                              oh              ho2                               1    1.4e-12     2000.0      0.0         1           0.0
+oh              o3                                ho2             o2                                1    1.7e-12     940.0       0.0         1           0.0
+ho2             o3                                oh              o2              o2                1    1.0e-14     490.0       0.0         1           0.0
+ch2o            oh                                h2o_vap         cho                               1    9.0e-12     0.0         0.0         1           0.0
+ch2o            o                                 cho             oh                                1    3.4e-11     1600.0      0.0         1           0.0
+cho             o2                                ho2             co                                1    5.2e-12     0.0         0.0         1           0.0
+!co              oh                                co2             h                                 ! Attention hard coded
+ho2             ho2                               h2o2            o2                                1    3.e-13     -460.0       0.0         1           0.0
+oh              oh                                h2o_vap         o                                 1    4.2e-12     240.0       0.0         1           0.0
+h               cho                               h2              co                                1    1.8e-10     0.0         0.0         1           0.0
+cho             cho                               ch2o            co                                1    4.5e-11     0.0         0.0         1           0.0
+oh              cho                               h2o_vap         co                                1    1.7e-10     0.0         0.0         1           0.0
+o               cho                               h               co2                               1    5.0e-11     0.0         0.0         1           0.0
+o               cho                               oh              co                                1    5.0e-11     0.0         0.0         1           0.0
+ch2o            h                                 h2              cho                               1    2.14e-12    1090.0      0.0         1           0.0
+!
+! 3-body Reactions
+h               co              M                 cho                                               1    2.4e-31     1370.0      0.0         1           1.0
+co              o               M                 co2                                               1    2.2e-33     1780.0      0.0         1           1.0
+o               o               M                 o2                                                1    1.2e-32     0.0        -2.0         300         1.0
+h               o2              M                 ho2                                               2    5.3e-32    -1.8         0.0         9.5e-11     0.4        0.0       298.0         0.6         0.0        0.0         1.0         1.0
+o               o2              M                 o3                                                1    1.5e-33     0.0        -2.4         300         1.0
+h               oh              M                 h2o_vap                                           1    1.7e-30     0.0        -2.0         298         1.0
+oh              oh              M                 h2o2                                              2    1.7e-31    -1.0         0.0         2.6e-11     0.0        0.0       300.0         0.6         0.0        0.0         1.0         1.0
+h               h               M                 h2                                                1    2.3e-32     0.0        -0.6         298         1.0
+ho2             ho2             M                 h2o2            o2                                1    4.3e-33    -1000.0      0.0         1           1.0
+
