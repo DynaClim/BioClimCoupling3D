@@ -1,18 +1,18 @@
 import pickle
 
-# Taille de la grille (à adapter à ton cas)
+# Grid size (adjust to your case)
 n_lat = 48
 n_lon = 64
-n_tasks = 50  # nombre de blocs à créer
+n_tasks = 50  # number of blocks to create
 
-# Tous les points (i, j)
+# All grid points as (i, j) pairs
 all_points = [(i, j) for i in range(n_lat) for j in range(n_lon)]
 
-# Diviser en blocs
+# Split into blocks for parallel processing
 blocks = [all_points[k::n_tasks] for k in range(n_tasks)]
 
-# Sauvegarder
+# Save to file
 with open("points_partition.pkl", "wb") as f:
     pickle.dump(blocks, f)
 
-print(f"{n_tasks} blocs de points générés.")
+print(f"{n_tasks} blocks of points generated and saved.")
