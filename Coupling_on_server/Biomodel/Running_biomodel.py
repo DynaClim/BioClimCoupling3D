@@ -79,7 +79,6 @@ altitude = ds.altitude.values * 1e3
 altitude = np.insert(altitude, 0, 0)
 last_time_idx = -1
 
-# === TRAITEMENT DES POINTS DU BLOC ===
 
 results = {}
 
@@ -135,12 +134,12 @@ for i, j in my_points:
         "Pression":Pression,
         "timep":flux_times}
 
-# === SAUVEGARDE DES RÉSULTATS ===
+# === SAVING RESULTS ===
 
 with open(f"results_{task_id}.pkl", "wb") as f:
     pickle.dump(results, f)
 
-print(f"✅ Tâche {task_id} terminée. Résultats enregistrés.")
+print(f"Task {task_id} finished. Results saved.")
 
 
 
