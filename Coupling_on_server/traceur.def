@@ -1,0 +1,19 @@
+#ModernTrac-v1
+17
+h2o_ice                 mmol=18   
+h2o_lake                mmol=18   
+co2_ice                 mmol=44
+o2                      mmol=32   is_chim=1    
+o3                      mmol=48   is_chim=1
+h2o2                    mmol=34   is_chim=1
+h2o_vap                 mmol=18   is_chim=1    
+ch2o                    mmol=30   is_chim=1
+co2                     mmol=44   is_chim=1    qx=1       S!F_mode=1    S!F_value=4.0e-4    is_rad=1
+ho2                     mmol=33   is_chim=1
+co                      mmol=28   is_chim=1    
+o                       mmol=16   is_chim=1
+o1d                     mmol=16   is_chim=1
+h                       mmol=1    is_chim=1
+h2                      mmol=2    is_chim=1    qx=0.15
+oh                      mmol=17   is_chim=1
+cho                     mmol=29   is_chim=1
