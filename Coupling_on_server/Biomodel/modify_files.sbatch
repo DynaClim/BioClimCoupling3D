@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=modify_files
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1   # Ajuste si tu fais du threading interne
+#SBATCH --cpus-per-task=1  
 #SBATCH --time=1:00:00
 #SBATCH --partition=shared-cpu
 #SBATCH --mem=50G
