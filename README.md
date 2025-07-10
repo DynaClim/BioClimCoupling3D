@@ -7,15 +7,16 @@ The initial prebiotic state of Mars is based on a scenario studied by Turbet and
 
 Methanogenic cells are then introduced, and the system is allowed to evolve under the influence of biology. The concentrations of H₂, CH₄, CO₂, and N₂ in the ocean, the concentration of methanogens in the ocean, and the gas ratios in the atmosphere all evolve simultaneously. Each spatial point evolves independently from the others. Once a threshold of CH₄ is reached in the atmosphere, the climate equilibrium is recalculated to stay close to reality, and this process continues. The coupling stops when the model's ocean temperature falls below the ocean’s freezing point for each ocean spatial points. At this point, the ocean is considered frozen and biological activity ceases (see diagram).
 
-<img src="./3D_coupling_diagram.png" alt="Diagram representing 1D coupling" width="30%">
+<img src="./3D_coupling_diagram.png" alt="Diagram representing 3D coupling" width="30%">
 
 ## 2. Description of the Different Folders in This Repository
 Four folders are included in this repository. Each of them contains a `README.md` file that provides more detailed explanations of the different codes and files in the folder.
 
 - **Ktables**: Contains the correlated-k tables useful for an atmosphere composed of CH₄, CO₂, N₂, and H₂.
 - **ciatables**: Contains the CIA tables necessary for the chemical species present in the atmosphere.
-- **Coupling_on_server**: Contains all the code needed to run the coupling on a server, to parallelize it, etc.
-- **Local_coupling_computation**: Contains everything required to run the coupling locally on your own computer.
+- **LowRes**: Contains low resolution corrk tables. 
+- **Coupling_on_server**: Contains all the code needed to run the coupling on a server, to parallelize it, etc. Because using the *GCM*, **coupling have to be run on a server**.
+- **Visualisation_notebooks**: Contains notebooks that enable the visualization of coupling data.
 - **Bibliography**: Contains the main articles on which this study is based, as well as the M1 internship report by François-Xavier Meyer.
 
 
