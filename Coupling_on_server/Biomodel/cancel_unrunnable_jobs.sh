@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Optionnel : intervalle pour attendre que les jobs "will never run" apparaissent
+# Optional: wait briefly to allow "will never run" jobs to appear
 sleep 10
 
-# Récupérer tous les jobs de l'utilisateur dans l'état "DEPENDENCY"
+# Get all user jobs currently in the "DEPENDENCY" state
 jobs_to_cancel=$(sacct --format=JobID,State --noheader | awk '$2=="DEPENDENCY" {print $1}')
 
 if [ -z "$jobs_to_cancel" ]; then
-    echo "Aucun job à annuler."
+    echo "No jobs to cancel."
 else
-    echo "Annulation des jobs suivants :"
+    echo "Cancelling the following jobs:"
     echo "$jobs_to_cancel"
     scancel $jobs_to_cancel
 fi
