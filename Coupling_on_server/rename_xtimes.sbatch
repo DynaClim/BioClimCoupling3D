@@ -8,7 +8,7 @@
 i=$1
 
 if [ -z "$i" ]; then
-  echo "Erreur : aucun argument fourni. Utilisation : sbatch $0 <indice>"
+  echo "Error : no args . Utilisation : sbatch $0 <indice>"
   exit 1
 fi
 
