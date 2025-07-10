@@ -29,28 +29,17 @@ Then, copy this file into a new empty directory and make it executable:
 Next, copy all elements from this folder to the location of the executable file.  
 At this point, the most difficult steps are completed. The only thing left is to update the paths in the necessary files.
 
-<div style="background-color:#8B0000; color:white; padding:16px; border-radius:8px; font-weight:bold;">
-
-<h3>⚠️ WARNING</h3>
-
-<ul>
-<li>The coupling has <strong>never been fully run</strong>, and the accuracy of the code is <strong>not guaranteed</strong>. However, one iteration of the coupling runs without issue.</li>
-<li>The initial files representing the <strong>prebiotic equilibrium state</strong> are not yet generated. They must be created and added to the folder as:
-  <ul>
-    <li><code>diagfi_global.nc</code></li>
-    <li><code>start.nc</code> (equivalent to <code>restart.nc</code> at the end of the GCM run)</li>
-    <li><code>startfi.nc</code> (equivalent to <code>restartfi.nc</code>)</li>
-  </ul>
-</li>
-</ul>
-
-</div>
-
-
+> ## ⚠️ WARNING
+>
+> - The coupling has **never been fully run**, and the accuracy of the code is **not guaranteed**. However, one iteration of the coupling runs without issue.
+> - The initial files representing the **prebiotic equilibrium state** are not yet generated. They must be created and added to the folder as:
+>     - diagfi_global.nc
+>     - start.nc (equivalent to restart.nc at the end of the GCM run)
+>     - startfi.nc (equivalent to restartfi.nc)
 
 ## Diagram of the 3D coupling
 
-![Server_3D_coupling.png](3D coupling diagram)
+![3D coupling diagram](Server_3D_coupling.png)
 
 ## 1. Biomodel Directory
 
