@@ -47,6 +47,7 @@ At this point, the most difficult steps are completed. The only thing left is to
 </div>
 
 
+
 ## Diagram of the 3D coupling
 
 ![Server_3D_coupling.png](3D coupling diagram)
