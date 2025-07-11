@@ -160,3 +160,8 @@ Update these variables in the script:
     LIST_FG_FILE="/home/users/m/meyerfra/earlymars_test_couplage_global/list_fG.txt"
     BASE_DIR="/home/users/m/meyerfra/earlymars_test_couplage_global"
     BIOMODEL_DIR="$BASE_DIR/Biomodel"
+The time over which GCM runs can be modified by changing this line:
+
+    num_gcm_iters=20
+
+knowing that one GCM run simulates climate evolution during 200 days.
