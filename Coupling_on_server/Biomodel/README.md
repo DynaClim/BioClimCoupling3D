@@ -80,7 +80,7 @@ Calculates interface fluxes using the stagnant boundary layer model (Karecha et 
 
 The way these files are organized is explain by the diagram below.
 
-INSERE UN DIAGRAMME
+<img src="./Bio_part_3D_coupling.png" alt="Diagram representing biological part of 3D coupling" width="50%">
 
 ### 4.1. `Biomodel_initialisation.py` and `Biomodel_initialisation.sbatch`
 
