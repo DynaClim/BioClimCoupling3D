@@ -68,7 +68,7 @@ for fG in "${fG_list[@]}"; do
     echo "  → Job ID: $job6"
 
     # --------- GCM CHAIN (REPLACING run_GCM_xtimes) ---------
-    num_gcm_iters=1
+    num_gcm_iters=20
     prev_gcm_job=""
 
     cd "$BASE_DIR" || exit 1
