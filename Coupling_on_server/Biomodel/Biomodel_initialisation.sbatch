@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=Bio_ini
 #SBATCH --output=logs/Bio_ini.out
-#SBATCH --error=logs/bio_ini.err
+#SBATCH --error=logs/Bio_ini.err
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --time=6:00:00
