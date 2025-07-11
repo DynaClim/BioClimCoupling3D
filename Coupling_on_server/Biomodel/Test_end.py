@@ -12,7 +12,7 @@ from glob import glob
 
 diagfi_path = "/home/users/m/meyerfra/earlymars_test_couplage_global/"
 start_path = "/home/users/m/meyerfra/earlymars_test_couplage_global/"
-startfi_path = "/home/users/m/meyerfra/earlymars_test_couplage_global/"
+
 
 output_filename = diagfi_path + "diagfi_global.nc"
 if os.path.exists(output_filename):
@@ -75,8 +75,7 @@ for f in files:
 
 files2 = glob(start_path+"start*.nc")
 files2 = [f for f in files2 if os.path.basename(f) != "start.nc"]
-files3 = glob(startfi_path+"startfi*.nc")
-files3 = [f for f in files3 if os.path.basename(f) != "startfi.nc"]
+files2 = [f for f in files2 if os.path.basename(f) != "startfi.nc"]
 
 print("Deleting start*.nc...")
 
@@ -85,14 +84,9 @@ for f in files2:
         os.remove(f)
         print(f"Deleted : {f}")
 
-print("Deleting startfi*.nc...")
-
-for f in files3:
-    if os.path.exists(f):
-        os.remove(f)
-        print(f"Deleted : {f}")
-
 ds = xr.open_dataset(diagfi_path+"diagfi_global.nc", decode_times=False)
+
+rn = ds["rnat"].isel(Time=-1)
 
 Tfus = 271.4
 
@@ -100,14 +94,16 @@ end_bool = False
 
 latitudes = ds.latitude
 longitudes = ds.longitude
-
-ds_last_669 = ds.isel(Time=slice(-669, None)) # 1 martian year = 669 earth days
+times = ds["Time"].values
+duration = abs(times[-1] - times[-2])
+n669 = int(np.ceil(669 / duration))
+ds_last_669 = ds.isel(Time=slice(-n669, None)) # 1 martian year = 669 earth days
 
 # Loop on physical points (lon,lat)
 for i, lat in enumerate(latitudes):
     for j, lon in enumerate(longitudes):
         toce_value = ds_last_669['tslab1'].isel(latitude=i, longitude=j).mean(dim='Time').values
-
+        rnat = rn[i,j]
         if rnat < 0.5:
             if toce_value > Tfus: end_bool = True
 
